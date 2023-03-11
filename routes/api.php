@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaourserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -21,3 +22,12 @@ use App\Http\Controllers\PostController;
 
 
 Route::apiResource("posts" , PostController::class);
+
+Route::get('post/carousels/{postId}' , [CaourserController::class , 'index']);
+
+Route::post("carousel/create" , [CaourserController::class , "store"]);
+
+
+Route::put("carousel/update/{caourselId}" , [CaourserController::class , "update"]);
+
+Route::delete('carousel/delete/{caourselId}' , [CaourserController::class , 'destroy']);

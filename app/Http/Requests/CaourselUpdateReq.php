@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostUpdateReq extends FormRequest
+class CaourselUpdateReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,11 @@ class PostUpdateReq extends FormRequest
     public function rules()
     {
         return [
-            
+            'id_ad' => 'sometimes|boolean',
             'content' => 'sometimes|string',
-            'title' => 'sometimes|string|min:5',
-            'media'=> 'image|mimes:png,jpg,jpeg|max:2048|',
-            'category_id'=> 'sometimes|exists:categories,id'
+            'see_more' => 'sometimes|string',
+            'media' => 'image|mimes:png,jpg,jpeg|max:2048',
+            'post_id' => 'sometimes|exists:posts,id',
         ];
     }
 }

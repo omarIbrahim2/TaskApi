@@ -1,12 +1,13 @@
 <?php
 namespace App\Repositories;
 
-use App\Helpers\uploadImage;
 use App\Models\Post;
-use App\Interfaces\RepoInterface;
+use App\Models\Coursel;
+use App\Helpers\uploadImage;
+use App\Interfaces\PostRepoInterface;
 use Illuminate\Support\Facades\Storage;
 
-class PostRepo implements RepoInterface{
+class PostRepo implements PostRepoInterface{
 
    public function getAll()
    {
@@ -54,5 +55,54 @@ class PostRepo implements RepoInterface{
       return NULL;
         
    }
+
+
+   public function createCaoursel($data)
+   {
+        return Coursel::create($data);
+   }
+
+   public function getPostCaoursels($postId)
+   {
+      return Coursel::where("post_id" , $postId)->get();
+   }
+
+
+   public function deleteCaoursel($caourselId){
+
+        $caoursel =  Coursel::find($caourselId);
+
+
+        if ($caoursel) {
+             
+            uploadImage::deleteImage($caoursel->media);
+
+            return $caoursel->delete();
+
+        }
+
+        return NULL;
+
+
+   }
+
+
+   public function updateCaoursel($data , $caourselId){
+
+    $caoursel =  Coursel::find($caourselId);
+
+
+    if ($caoursel) {
+        uploadImage::deleteImage($caoursel->media);
+        return $caoursel->update($data);
+    }
+
+    return NULL;
+
+
+   }
+           
+   
+
 
 }

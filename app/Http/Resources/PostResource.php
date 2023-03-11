@@ -17,7 +17,8 @@ class PostResource extends JsonResource
         return [
            'id' => $this->id,
            'category' => $this->Category->name,
-           'title' => $this->content,
+           'title' => $this->title,
+           'content' => $this->content,
            'media' => $this->media,
            'carousel'=> CourselResource::collection($this->Coursels),
         ];

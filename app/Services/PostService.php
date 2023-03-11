@@ -3,14 +3,18 @@
 namespace App\Services;
 
 use App\Helpers\uploadImage;
+use App\Repositories\CaourselRepo;
 use App\Repositories\PostRepo;
 
 class PostService{
     
     private $postRepo;
+
     public function __construct(PostRepo $postRepo)
     {
         $this->postRepo = $postRepo;
+
+        
     }
 
 
@@ -37,5 +41,25 @@ class PostService{
         
          return $this->postRepo->update($data , $id);
 
+    }
+
+    public function getCauorselsPost($id){
+
+        return $this->postRepo->getPostCaoursels($id);
+    }
+
+    public function AddCoursel($data){
+        return $this->postRepo->createCaoursel($data);    
+    }
+
+
+    public function UpdateCaoursel($data , $id){
+
+        return $this->postRepo->updateCaoursel($data , $id);
+    }
+
+    public function DeleteCaoursel($id){
+
+        return $this->postRepo->deleteCaoursel($id);
     }
 }

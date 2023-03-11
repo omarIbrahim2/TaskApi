@@ -15,6 +15,7 @@ class CourselResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'id_ad' => $this->id_ad,
             'content' => $this->content,
             'see_more' => $this->see_more,

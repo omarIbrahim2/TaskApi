@@ -41,7 +41,7 @@ class PostController extends Controller
         $validatedData =  $request->validated();
       
         if($request->has('media')){
-            
+                     
           $media = uploadImage::upload($request->file('media') , 'posts');
           $validatedData["media"] = $media;
 
