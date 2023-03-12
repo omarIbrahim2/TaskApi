@@ -37,9 +37,9 @@ class PostService{
         return $this->postRepo->delete($id);
     }
 
-    public function updatePost($data , $id){
+    public function updatePost($data , $post){
         
-         return $this->postRepo->update($data , $id);
+         return $this->postRepo->update($data , $post);
 
     }
 
@@ -50,6 +50,12 @@ class PostService{
 
     public function AddCoursel($data){
         return $this->postRepo->createCaoursel($data);    
+    }
+
+
+    public function getCoursel($id){
+
+        return $this->postRepo->getCaoursel($id);
     }
 
 

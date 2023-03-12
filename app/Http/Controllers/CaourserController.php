@@ -73,12 +73,16 @@ class CaourserController extends Controller
              
         $validatedReq = $request->validated();
 
-        $action = $this->PostService->UpdateCaoursel($validatedReq , $id);
-        if ($request->has('media')){
+       $caoursel = $this->PostService->getCoursel($id);
 
+       
+        if ($request->has('media')){
+            uploadImage::deleteImage($caoursel->media);  
             $imagePath = uploadImage::upload($request->file('media') , 'caoursels');
-            $validatedData["media"] = $imagePath;
+            $validatedReq["media"] = $imagePath;
         }
+
+        $action = $this->PostService->UpdateCaoursel($validatedReq , $caoursel);
 
 
         if ($action) {

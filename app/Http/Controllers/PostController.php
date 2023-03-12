@@ -105,17 +105,22 @@ class PostController extends Controller
     {
          $validatedReq =  $request->validated();
 
-           
+         $post = $this->postService->getPost($id);     
 
-         $action = $this->postService->updatePost($validatedReq , $id);
-
-         if ($request->hasFile('media')) {
-               
-            $media  = uploadImage::upload($request->file("media") , 'posts');
-
+          
+         if ($request->has('media')) {
+             
+            uploadImage::deleteImage($post->media);
+            
+            $media  = uploadImage::upload($request->file('media') , 'posts');
+          
             $validatedReq['media'] = $media;
           
       }
+
+          $action = $this->postService->updatePost($validatedReq , $post);
+
+     
 
          if ($action) {
             return Response::json([

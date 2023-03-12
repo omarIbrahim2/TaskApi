@@ -42,12 +42,10 @@ class PostRepo implements PostRepoInterface{
        return Post::create($data);
    }
 
-   public function update($data, $id)
+   public function update($data, $post)
    {
-      $post = $this->getOne($id);
        
       if ($post) {
-        uploadImage::deleteImage($post->media);
         return $post->update($data);
       }
       
@@ -87,13 +85,10 @@ class PostRepo implements PostRepoInterface{
    }
 
 
-   public function updateCaoursel($data , $caourselId){
+   public function updateCaoursel($data , $caoursel){
 
-    $caoursel =  Coursel::find($caourselId);
-
-
+  
     if ($caoursel) {
-        uploadImage::deleteImage($caoursel->media);
         return $caoursel->update($data);
     }
 
@@ -101,8 +96,12 @@ class PostRepo implements PostRepoInterface{
 
 
    }
-           
-   
 
+   public function getCaoursel($id){
+      
+    return  Coursel::find($id);
+
+   }
+           
 
 }
