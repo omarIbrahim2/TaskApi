@@ -39,7 +39,7 @@ class CaourserController extends Controller
          if ($request->has('media')){
                    
             $imagePath = uploadImage::upload($request->file('media') , 'caoursels');
-            $validatedData["media"] = $imagePath;
+            $validatedReq["media"] = $imagePath;
              
          }
 
